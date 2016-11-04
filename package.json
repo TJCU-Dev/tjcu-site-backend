@@ -1,0 +1,22 @@
+{
+  "name": "tjcu-site-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TJCU-Dev/tjcu-site-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TJCU-Dev/tjcu-site-backend/issues"
+  },
+  "homepage": "https://github.com/TJCU-Dev/tjcu-site-backend#readme",
+  "dependencies": {
+    "koa": "^2.0.0-alpha.7"
+  }
+}
