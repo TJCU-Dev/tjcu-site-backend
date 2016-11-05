@@ -1,3 +1,20 @@
-require("babel-register")
-require("babel-polyfill")
-// 好了 下面我们完美的使用es6了
+import koa from 'koa'
+const app = new koa();
+
+
+app.use(async (ctx, next) => {
+  const start = new Date();
+  await next();
+  const ms = new Date() - start;
+  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+});
+
+
+
+app.use(ctx => {
+  ctx.body = 'Hello Koa NoBey';
+});
+
+
+
+ export default app
