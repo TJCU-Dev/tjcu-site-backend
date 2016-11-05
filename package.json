@@ -28,7 +28,12 @@
     "eslint": "^3.9.1",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
-    "koa": "^2.0.0-alpha.7"
+    "koa": "^2.0.0-alpha.7",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^2.0.0",
+    "koa-router": "^7.0.1",
+    "koa-static": "^2.0.0",
+    "mongoose": "^4.6.6"
   },
   "devDependencies": {
     "eslint": "^3.9.1",

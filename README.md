@@ -19,7 +19,7 @@
 
 启动项目
 - `npm install`
-- `npm start` or 需要设置端口 `p=1234 npm start` or `PORT=1234 npm start`
+- `npm start` or 需要设置端口 `p=1234 npm start` or `PORT=1234 npm start` and  调试使用`nodemon`:`nodemon --exec npm start` 
 
 
 检查代码错误  `gulp lint`or`npm run lint`

@@ -11,3 +11,9 @@ gulp.task('lint', function() {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
+
+gulp.task('dev', function() {
+  // 调试使用 自动检查改变重启
+
+
+});

@@ -1,20 +1,24 @@
-import koa from 'koa'
-const app = new koa();
+import koa    from 'koa';
+import Static from 'koa-static'; // 静态目录中间件
+import logger from 'koa-logger'; // http请求日志中间件
+import json   from 'koa-json';   // 打印json
+const  router = require('koa-router')(); // 路由中间件
+const  app    = new koa();
+
+// 载入路由文件
+import users from './routes/users'
+
+// 加载配置中间件
+app.use(json())
+app.use(logger())
 
 
-app.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-});
+// 加载路由
+app.use(router.routes())
+   .use(router.allowedMethods())
+   .use(users.routes())
 
 
 
-app.use(ctx => {
-  ctx.body = 'Hello Koa NoBey';
-});
 
-
-
- export default app
+export default app
