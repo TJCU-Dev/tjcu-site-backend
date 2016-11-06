@@ -3,6 +3,7 @@ import UserAction from '../action/user'
 
 
 router.post('/user', UserAction.create)
+      .put('/user', UserAction.update)
 
 
 export default router
