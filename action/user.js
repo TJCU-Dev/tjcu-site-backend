@@ -2,6 +2,7 @@ import User from '../model/user';
 
 export default {
 /*
+  ** 创建用户
   ** @user       {String}     用户名
   ** @password   {String}     密码
   ** @tel        {String}     手机号码
@@ -38,7 +39,7 @@ export default {
 
   },
   /*
-   *
+   ** 修改用户信息
    ** @user       {String}     用户名
    ** @password   {String}     密码
    ** @tel        {String}     手机号码
@@ -48,8 +49,6 @@ export default {
    ** @pwA        {String}     教务密码
    ** @pwB        {String}     校园网密码
    ** @user       {String}     用户名
-   **
-   *
    */
   update: async (ctx, next)=>{
     const body     = ctx.request.body
@@ -63,7 +62,6 @@ export default {
     const pwB      = body.pwB || ''
 
     ctx.body = await User.findOneAndUpdate({'user': name},{
-      'user'    : name,
       'password': password,
       'tel'     : tel,
       'xh'      : xh,
@@ -74,4 +72,34 @@ export default {
     })
   },
 
+  /*
+    ** 获取指定用户信息
+    ** @user       {String}     用户名
+    ** @password   {String}     密码
+    ** @tel        {String}     手机号码
+    ** @xh         {String}     学号
+    ** @email      {String}     邮箱
+    ** @portrait   {String}     头像
+    **
+  */
+
+  get: async (ctx, next)=>{
+    const name = ctx.params.user
+    ctx.body   = await User.findOne({'user': name}, 'user tel xh email portrait')
+  },
+
+  /*
+    ** 获取用户列表
+    ** @user       {String}     用户名
+    ** @xh         {String}     学号
+    ** @portrait   {String}     头像
+    **
+  */
+
+  list: async (ctx, next)=>{
+    const page  = ctx.params.page || 1
+    const limit = 2
+    const skip  = (page-1)*limit
+    ctx.body   = await User.find({}, 'user xh portrait').skip(skip).limit(limit)
+  },
 }
