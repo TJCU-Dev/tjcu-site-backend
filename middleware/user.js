@@ -1,6 +1,8 @@
 const User = {}
 
-// User.check
+User.check = async (ctx)=>{
+
+}
 
 
 

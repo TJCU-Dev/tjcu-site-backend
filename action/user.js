@@ -102,4 +102,52 @@ export default {
     const skip  = (page-1)*limit
     ctx.body   = await User.find({}, 'user xh portrait').skip(skip).limit(limit)
   },
+
+  /*
+    ** 登录
+    ** @user       {String}     用户名
+    ** @password   {String}     密码
+    ** @tel        {String}     手机号码
+    ** @xh         {String}     学号
+    ** @email      {String}     邮箱
+    ** @portrait   {String}     头像
+    **
+  */
+  login: async (ctx, next)=>{
+    const body     = ctx.request.body
+    const name     = body.user || ''
+    const password = body.password || ''
+    const count = await User.count({
+      'user'     : name,
+      'password' : password
+    })
+
+    if(count==1) {
+      ctx.body = ctx.session.user = await User.findOne({
+        'user'     : name,
+        'password' : password
+      }, 'user tel xh email portrait')
+    }else{
+      ctx.body =  {
+        stats: 0,
+        msg  : '账户或密码错误'
+      }
+    }
+  },
+
+  /*
+    ** 登出用户
+    ** @user       {String}     用户名
+    ** @password   {String}     密码
+    ** @tel        {String}     手机号码
+    ** @xh         {String}     学号
+    ** @email      {String}     邮箱
+    ** @portrait   {String}     头像
+    **
+  */
+  logout: (ctx, next)=>{
+    ctx.session = null;
+  },
+
+
 }

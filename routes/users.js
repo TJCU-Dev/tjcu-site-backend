@@ -16,6 +16,8 @@ router.post('/user', UserAction.create)
       .put('/user', UserAction.update)
       .get('/user/:user', UserAction.get)
       .post(['/user/list', '/user/list/:page'], UserAction.list)
+      .post('/login', UserAction.login)
+      .post('/logout', UserAction.logout)
 
 
 
