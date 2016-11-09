@@ -1,6 +1,6 @@
 const router = require('koa-router')(); // 路由中间件
 import UserAction from '../action/user'
-
+import UserMw     from '../middleware/user'
 
 /*
   ** 路由列表
@@ -13,11 +13,11 @@ import UserAction from '../action/user'
 
 
 router.post('/user', UserAction.create)
-      .put('/user', UserAction.update)
-      .get('/user/:user', UserAction.get)
-      .post(['/user/list', '/user/list/:page'], UserAction.list)
+      .put('/user', UserMw.check, UserAction.update)
+      .get('/user/:user', UserMw.check, UserAction.get)
+      .post(['/user/list', '/user/list/:page'], UserMw.check, UserAction.list)
       .post('/login', UserAction.login)
-      .post('/logout', UserAction.logout)
+      .post('/logout', UserMw.check, UserAction.logout)
 
 
 
