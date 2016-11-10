@@ -8,16 +8,18 @@ import UserMw     from '../middleware/user'
   ** @put   /user             {Object}       更新用户信息
   ** @get   /user/:user       {params.user}  获取指定用户信息
   ** @post  /user/list/:page  {params.page}  获取用户列表
+  ** @post  /login            {params}       登录
+  ** @post  /logout           {params}       登出
   **
 */
 
 
-router.post('/user', UserAction.create)
-      .put('/user', UserMw.check, UserAction.update)
-      .get('/user/:user', UserMw.check, UserAction.get)
-      .post(['/user/list', '/user/list/:page'], UserMw.check, UserAction.list)
-      .post('/login', UserAction.login)
-      .post('/logout', UserMw.check, UserAction.logout)
+router.post('/api/user', UserAction.create)
+      .put('/api/user', UserMw.check, UserAction.update)
+      .get('/api/user', UserMw.check, UserAction.get)
+      .post(['/api/user/list', '/api/user/list/:page'], UserMw.check, UserAction.list)
+      .post('/api/login', UserAction.login)
+      .post('/api/logout', UserMw.check, UserAction.logout)
 
 
 

@@ -35,6 +35,10 @@ const UserSchema = new Schema({
     type: String,
   },
 
+  sex: {
+    type: String,
+  },
+
   email: {
     type: String,
   },

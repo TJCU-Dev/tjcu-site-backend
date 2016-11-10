@@ -22,7 +22,7 @@ export default {
     const count    = await User.count({'user': name})
 
     if( count==0 ){
-      ctx.body = await User.create({
+      ctx.body = ctx.session.user = await User.create({
         'user'    : name,
         'password': password,
         'tel'     : tel,
@@ -84,8 +84,9 @@ export default {
   */
 
   get: async (ctx, next)=>{
-    const name = ctx.params.user
-    ctx.body   = await User.findOne({'user': name}, 'user tel xh email portrait')
+    // const name = ctx.session.user.user
+    console.log(ctx.session.user )
+    ctx.body   =   ctx.session.user       //await User.findOne({'user': name}, 'user tel xh email portrait')
   },
 
   /*
