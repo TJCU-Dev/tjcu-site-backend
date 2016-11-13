@@ -32,5 +32,6 @@ app.use(router.routes())
    .use(router.allowedMethods())
    .use(users.routes())
 
+app.use(Static('public'))
 
 export default app

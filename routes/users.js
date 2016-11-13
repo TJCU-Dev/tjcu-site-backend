@@ -15,12 +15,11 @@ import UserMw     from '../middleware/user'
 
 
 router.post('/api/user', UserAction.create)
-      .put('/api/user', UserMw.check, UserAction.update)
+      .post('/api/user/update', UserMw.check, UserAction.update)
       .get('/api/user', UserMw.check, UserAction.get)
       .post(['/api/user/list', '/api/user/list/:page'], UserMw.check, UserAction.list)
       .post('/api/login', UserAction.login)
       .post('/api/logout', UserMw.check, UserAction.logout)
-
-
+      .post('/api/user/change', UserMw.check, UserAction.changePassword)
 
 export default router

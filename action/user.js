@@ -61,7 +61,7 @@ export default {
     const pwA      = body.pwA || ''
     const pwB      = body.pwB || ''
 
-    ctx.body = await User.findOneAndUpdate({'user': name},{
+    const data =  await User.findOneAndUpdate({'user': name},{
       'password': password,
       'tel'     : tel,
       'xh'      : xh,
@@ -70,6 +70,35 @@ export default {
       'pwA'     : pwA,
       'pwB'     : pwB,
     })
+    if(data._id) ctx.body = {stats:'ok',msg:'更新成功'}
+    else ctx.body = {stats:0,msg:'更新失败'}
+  },
+
+
+  /*
+    ** 修改密码
+    ** @user       {String}     用户名
+    ** @oldpw      {String}     老密码
+    ** @newpw      {String}     新密码
+    **
+  */
+
+  changePassword: async (ctx, next)=>{
+    const body   = ctx.request.body
+    const count  = await User.count({
+      'user': body.user,
+      'password':body.oldpw
+    })
+
+    if(count===1 && body.newpw===body.newpw2){
+      await User.findOneAndUpdate({'user': body.user},{
+        'password': body.newpw,
+      })
+      ctx.body = {stats:'ok',msg:'修改密码成功'}
+    }else {
+      ctx.body = {stats:0,msg:'修改密码失败'}
+    }
+
   },
 
   /*
