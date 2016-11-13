@@ -13,7 +13,7 @@ const server = http.createServer(app.callback());
  */
 const PORT = process.env.PORT || process.env.p
 
-const port = normalizePort(PORT || '3000');
+const port = normalizePort(PORT || '41893');
 
 /**
  *  监听端口 默认 3000
