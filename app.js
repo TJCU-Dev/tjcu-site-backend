@@ -12,6 +12,7 @@ const  app    = new koa();
 
 // 载入路由文件
 import users      from './routes/users'
+import rooms      from './routes/room'
 
 // session 密钥
 app.keys = ['TJCU'];
@@ -21,7 +22,7 @@ app.use(convert(session({
   httpOnly: false,
   maxAge: 211111111,
 }, app)))
-// app.use(cors())
+app.use(cors())
 app.use(json())
 app.use(logger())
 app.use(bodyparser())
@@ -31,6 +32,7 @@ app.use(bodyparser())
 app.use(router.routes())
    .use(router.allowedMethods())
    .use(users.routes())
+   .use(rooms.routes())
 
 app.use(Static('public'))
 
